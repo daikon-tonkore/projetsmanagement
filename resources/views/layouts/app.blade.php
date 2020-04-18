@@ -21,5 +21,13 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
+        <script>
+            $(function(){
+                $('.dropdown-menu .dropdown-item').click(function(){
+                    var visibleItem = $('.dropdown-toggle', $(this).closest('.dropdown'));
+                    visibleItem.text($(this).attr('value'));
+                });
+            });
+        </script>
     </body>
 </html>
