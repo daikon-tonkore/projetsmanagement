@@ -24,7 +24,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 // ユーザ機能
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+    Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit']]);
     
     Route::group(['prefix' => 'users/{id}'], function () {
         Route::post('follow', 'UserFollowController@store')->name('user.follow');
@@ -34,15 +34,8 @@ Route::group(['middleware' => 'auth'], function () {
     });
     
     Route::resource('messages', 'MessagesController', ['only' => ['store', 'destroy']]);
+    Route::post('upload', 'MessagesController@upload')->name('upload');
 });
-
-/*
-Route::group(['middleware' => 'auth'], function () {
-    Route::group(['prefix' => 'users/{id}'], function () {
-        Route::resource('tasks', 'TasksController');
-    });
-});
-*/
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('tasks', 'TasksController');

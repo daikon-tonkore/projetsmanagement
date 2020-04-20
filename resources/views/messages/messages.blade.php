@@ -6,6 +6,11 @@
                 <div>
                     {!! link_to_route('users.show', $message->user->name, ['id' => $message->user->id]) !!} <span class="text-muted">posted at {{ $message->created_at }}</span>
                 </div>
+                @if ($message->image_file_name <> "")
+                    <div>
+                        <img src= {{ Storage::disk('s3')->url($message->image_file_name) }} alt="" width=250px height=250px></a>
+                    </div>
+                @endif
                 <div>
                     <p class="mb-0">{!! nl2br(e($message->content)) !!}</p>
                 </div>

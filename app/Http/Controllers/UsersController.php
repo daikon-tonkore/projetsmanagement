@@ -21,7 +21,6 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $messages = $user->messages()->orderBy('created_at', 'desc')->paginate(10);
-        
         $data = [
             'user' => $user,
             'messages' => $messages,
@@ -60,5 +59,14 @@ class UsersController extends Controller
         $data += $this->counts($user);
 
         return view('users.followers', $data);
+    }
+    
+    public function edit($id)
+    {
+        $user = User::find($id);
+        
+        return view('users.edit', [
+            'user' => $user,
+        ]);
     }
 }
